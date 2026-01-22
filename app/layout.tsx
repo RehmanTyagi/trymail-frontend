@@ -1,34 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Landing/Header";
 
-const better_times = localFont({
-  variable: "--font-better-times",
-  src: "../public/fonts/Better-Times.ttf",
-  fallback: ["sans-serif"],
-});
-
-const inter = localFont({
-  variable: "--font-inter",
-  src: [
-    { path: "../public/fonts/Inter-Regular.ttf", weight: "400" },
-    {
-      path: "../public/fonts/Inter-Medium.ttf",
-      weight: "500",
-    },
-    {
-      path: "../public/fonts/Inter-SemiBold.ttf",
-      weight: "600",
-    },
-    {
-      path: "../public/fonts/Inter-Bold.ttf",
-      weight: "800",
-    },
-    {
-      path: "../public/fonts/Inter-Black.ttf",
-      weight: "900",
-    },
-  ],
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -61,8 +38,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${better_times.variable} antialiased`}
+        className={`${poppins.className} container mx-auto min-h-screen px-28 py-7 antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>

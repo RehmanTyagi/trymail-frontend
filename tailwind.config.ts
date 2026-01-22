@@ -12,10 +12,6 @@ module.exports = {
         secondary: ["var(--color-secondary)"],
         text: ["var(--color-text)"],
       },
-      fontFamily: {
-        betterTime: ["var(--font-better-times)"],
-        inter: ["var(--font-inter)"],
-      },
     },
   },
   plugins: [],
