@@ -5,7 +5,7 @@ import Header from "./components/Landing/Header";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} container mx-auto min-h-screen px-28 antialiased`}
+        className={`${poppins.className} mx-auto min-h-screen max-w-362 antialiased`}
       >
         <Header />
         {children}

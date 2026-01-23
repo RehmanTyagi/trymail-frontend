@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { ComponentPropsWithoutRef, ElementType } from "react";
 
-const classes = cva("flex gap-2 cursor-pointer text-sm", {
+const classes = cva("flex gap-2 items-center", {
   variants: {
     variant: {
       primary:
@@ -9,19 +9,20 @@ const classes = cva("flex gap-2 cursor-pointer text-sm", {
       secondary: "border border-foreground rounded-md font-medium",
     },
     size: {
-      small: "px-4 py-2",
+      small: "px-4 py-1.5",
       medium: "px-6 py-3",
       large: "px-8 py-4",
     },
   },
 });
 
-type ButtonProps<C extends ElementType> = VariantProps<typeof classes> & {
-  as?: C;
-  children: React.ReactNode;
-} & ComponentPropsWithoutRef<C>;
+type ButtonProps<C extends ElementType> = VariantProps<typeof classes> &
+  ComponentPropsWithoutRef<C> & {
+    as?: C;
+    children: React.ReactNode;
+  };
 
-const Button = <C extends ElementType>(props: ButtonProps<C>) => {
+const Button = <C extends ElementType = "button">(props: ButtonProps<C>) => {
   const { as, children, size, variant, className, ...rest } = props;
   const Component = as || "button";
 

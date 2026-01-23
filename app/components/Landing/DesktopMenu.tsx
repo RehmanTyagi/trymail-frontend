@@ -3,6 +3,7 @@
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import Button from "../common/Button";
 
 interface SubMenuSection {
   title: string;
@@ -23,42 +24,49 @@ interface DesktopMenuProps {
 const DesktopMenu = ({ label, href, sections }: DesktopMenuProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
+  const handleOpenClose = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <li className="relative">
-      <Link
+      <Button
+        as={Link}
         href={href}
         className="hover:text-primary flex items-center gap-1.5 rounded-md transition-colors"
-        onMouseEnter={() => sections && setIsOpen(true)}
-        onMouseLeave={() => sections && setIsOpen(false)}
+        onClick={handleOpenClose}
       >
         {label}
         {sections && (
           <ChevronDown
-            className={`h-4 w-4 transition-transform duration-200 ${
+            className={`h-3.5 w-3.5 stroke-3 transition-transform duration-200 ${
               isOpen ? "rotate-180" : ""
             }`}
           />
         )}
-      </Link>
+      </Button>
 
       {sections && isOpen && (
         <div
-          className="border-primary absolute top-full right-2/4 z-50 mt-6 min-w-max translate-x-2/4 overflow-hidden border bg-white"
+          className="fixed right-0 left-0 overflow-hidden border-t border-gray-300 bg-white shadow-xl"
+          style={{ top: "var(--header-height, 80px)" }}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
         >
-          <div className="grid min-w-max grid-cols-4 gap-8 p-8">
+          <div className="mx-auto grid max-w-7xl grid-cols-4 gap-8 py-10">
             {sections.map((section, idx) => (
               <div key={idx}>
-                <h3 className="mb-4 text-xs font-semibold tracking-wide text-gray-600 uppercase">
+                <h3 className="mb-5 inline-flex py-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">
                   {section.title}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="mb-8 space-y-1 lg:mb-0">
                   {section.items.map((item) => (
-                    <li key={item.label}>
-                      <Link
+                    <li className="group -mx-3" key={item.label}>
+                      <Button
+                        size="small"
+                        as={Link}
                         href={item.href}
-                        className="group flex items-center gap-3 text-sm text-gray-700 transition-colors hover:text-gray-900"
+                        className="group hover:text-primary flex items-center gap-3 pl-0 transition-colors"
                       >
                         {item.icon && (
                           <span className="h-5 w-5 shrink-0 rounded-full bg-gray-200 transition-colors group-hover:bg-gray-300" />
@@ -71,7 +79,7 @@ const DesktopMenu = ({ label, href, sections }: DesktopMenuProps) => {
                             </span>
                           )}
                         </span>
-                      </Link>
+                      </Button>
                     </li>
                   ))}
                 </ul>

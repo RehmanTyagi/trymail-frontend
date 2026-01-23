@@ -5,15 +5,15 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="grid grid-cols-2">
-      <div className="my-20 flex flex-col gap-8">
+    <section className="grid grid-cols-2 px-18">
+      <div className="my-18 flex flex-col gap-7">
         <h1 className="text-[58px] leading-tight font-bold text-gray-900">
           Transactional emails that actually&nbsp;
-          <span className="bg-[url('/images/circle-decoration.svg')] bg-top bg-no-repeat">
+          <span className="bg-[url('/images/circle-decoration.svg')] bg-center bg-no-repeat">
             deliver
           </span>
         </h1>
-        <p>
+        <p className="mt-2">
           Powerful email infrastructure for developers. Send transactional
           emails at scale with 99.9% deliverability and real-time analytics.
         </p>
@@ -32,7 +32,7 @@ const Hero = () => {
             Send 500 emails/Day free
           </Button>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="mt-2.5 flex items-center gap-6">
           <div className="flex items-center gap-2">
             <Clock8 className="h-5 w-auto" />
             <span>24/5 Supports</span>
@@ -47,7 +47,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="mt-16">
+      <div className="mt-20 mr-5">
         <Image
           alt="Hero image"
           src="images/hero.svg"

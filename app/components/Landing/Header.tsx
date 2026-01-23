@@ -69,7 +69,7 @@ const menus: NavigationWithSections[] = [
         ],
       },
       {
-        title: "CREATE EMAILS",
+        title: "CREATE CUSTOM TEMPLATES",
         items: [
           { label: "Drag & drop builder", href: "/tools/builder", icon: true },
           {
@@ -89,17 +89,6 @@ const menus: NavigationWithSections[] = [
           },
         ],
       },
-      {
-        title: "SEND SMS",
-        items: [
-          {
-            label: "Transactional SMS",
-            href: "/sms/transactional",
-            icon: true,
-            badge: "US & CA",
-          },
-        ],
-      },
     ],
   },
   {
@@ -114,7 +103,7 @@ const menus: NavigationWithSections[] = [
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between py-10">
+    <header className="sticky top-0 flex h-(--header-height) items-center justify-between bg-white px-19 py-6.5">
       <Link href="/" className="h-auto w-30">
         <Image
           src="logo.svg"
@@ -125,7 +114,7 @@ const Header = () => {
         />
       </Link>
       <nav>
-        <ul className="hidden lg:flex lg:items-center lg:gap-10">
+        <ul className="flex items-center gap-10">
           {menus.map((item) => (
             <DesktopMenu
               key={item.label}
@@ -136,12 +125,12 @@ const Header = () => {
           ))}
         </ul>
       </nav>
-      <div className="flex items-center gap-3.5 text-xs">
-        <Button as="a" href="/login" size="small">
+      <div className="flex items-center gap-3 text-xs">
+        <Button as={Link} href="/login" size="small">
           <CircleUserRound size={20} />
           <span>Login</span>
         </Button>
-        <Button as="a" href="/signup" size="small" variant="primary">
+        <Button as={Link} href="/signup" size="small" variant="primary">
           Sign up
         </Button>
       </div>
