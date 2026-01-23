@@ -6,52 +6,101 @@ import Button from "../common/Button";
 import Link from "next/link";
 import DesktopMenu from "./DesktopMenu";
 
-export interface Navigation {
+interface SubMenuSection {
+  title: string;
+  items: Array<{
+    label: string;
+    href: string;
+    icon?: boolean;
+    badge?: string;
+  }>;
+}
+
+export interface NavigationWithSections {
   label: string;
   href: string;
-  subMenu?: NavigationMenu;
+  sections?: SubMenuSection[];
 }
 
-interface NavigationMenu {
-  heading: string;
-  linkList: NavigationMenuItem[];
-}
-
-interface NavigationMenuItem {
-  icon: boolean;
-  label: string;
-  href: string;
-}
-
-const menus: Navigation[] = [
+const menus: NavigationWithSections[] = [
   {
     label: "Products",
     href: "#",
-    subMenu: {
-      heading: "Send and receive emails",
-      linkList: [
-        {
-          icon: true,
-          label: "Email API",
-          href: "/products/email-api",
-        },
-        {
-          icon: true,
-          label: "SMTP Relay",
-          href: "/products/smtp-relay",
-        },
-        {
-          icon: true,
-          label: "Inbound Routing",
-          href: "/products/inbound-routing",
-        },
-        {
-          icon: true,
-          label: "Email Verification",
-          href: "/products/email-verification",
-        },
-      ],
-    },
+    sections: [
+      {
+        title: "SEND AND RECEIVE EMAILS",
+        items: [
+          { label: "Email API", href: "/products/email-api", icon: true },
+          { label: "SMTP Relay", href: "/products/smtp-relay", icon: true },
+          {
+            label: "Dynamic email templates",
+            href: "/products/email-templates",
+            icon: true,
+          },
+          {
+            label: "Inbound email routing",
+            href: "/products/inbound-routing",
+            icon: true,
+          },
+          {
+            label: "Email verification",
+            href: "/products/email-verification",
+            icon: true,
+          },
+        ],
+      },
+      {
+        title: "MANAGE YOUR ACCOUNT",
+        items: [
+          { label: "User management", href: "/account/users", icon: true },
+          { label: "Multiple domains", href: "/account/domains", icon: true },
+          {
+            label: "Suppression lists",
+            href: "/account/suppression",
+            icon: true,
+          },
+          { label: "Analytics", href: "/account/analytics", icon: true },
+          {
+            label: "MCP server",
+            href: "/account/mcp",
+            icon: true,
+            badge: "NEW",
+          },
+        ],
+      },
+      {
+        title: "CREATE EMAILS",
+        items: [
+          { label: "Drag & drop builder", href: "/tools/builder", icon: true },
+          {
+            label: "HTML template editor",
+            href: "/tools/html-editor",
+            icon: true,
+          },
+          {
+            label: "Rich-text email editor",
+            href: "/tools/editor",
+            icon: true,
+          },
+          {
+            label: "Email split testing",
+            href: "/tools/split-testing",
+            icon: true,
+          },
+        ],
+      },
+      {
+        title: "SEND SMS",
+        items: [
+          {
+            label: "Transactional SMS",
+            href: "/sms/transactional",
+            icon: true,
+            badge: "US & CA",
+          },
+        ],
+      },
+    ],
   },
   {
     label: "About",
@@ -65,7 +114,7 @@ const menus: Navigation[] = [
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between">
+    <header className="flex items-center justify-between py-10">
       <Link href="/" className="h-auto w-30">
         <Image
           src="logo.svg"
@@ -82,17 +131,17 @@ const Header = () => {
               key={item.label}
               href={item.href}
               label={item.label}
-              subMenu={item.subMenu}
+              sections={item.sections}
             />
           ))}
         </ul>
       </nav>
       <div className="flex items-center gap-3.5 text-xs">
-        <Button size="small">
+        <Button as="a" href="/login" size="small">
           <CircleUserRound size={20} />
           <span>Login</span>
         </Button>
-        <Button size="small" variant="primary">
+        <Button as="a" href="/signup" size="small" variant="primary">
           Sign up
         </Button>
       </div>

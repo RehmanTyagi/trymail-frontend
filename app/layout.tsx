@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Email, SMS, & Push for Shopify | TryMail",
+  title: "Intuitive email API and SMTP | TryMail",
   description:
     "Email Marketing, SMS Marketing, & Push Notifications for Shopify. Grow Shopify sales with unified email marketing, SMS marketing & web push. Launch popups and newsletters, run flash sales, and automate abandoned cart recovery, back-in-stock, and price-drop alerts with segmentation and analytics.",
   applicationName: "TryMail - Email Service for developers",
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} container mx-auto min-h-screen px-28 py-7 antialiased`}
+        className={`${poppins.className} container mx-auto min-h-screen px-28 antialiased`}
       >
         <Header />
         {children}

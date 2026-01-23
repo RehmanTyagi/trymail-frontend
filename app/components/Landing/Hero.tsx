@@ -1,11 +1,12 @@
 import { Bug, Clock8, Network } from "lucide-react";
 import Image from "next/image";
 import Button from "../common/Button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
     <section className="grid grid-cols-2">
-      <div className="flex flex-col gap-8 xl:my-24 xl:ml-2">
+      <div className="my-20 flex flex-col gap-8">
         <h1 className="text-[58px] leading-tight font-bold text-gray-900">
           Transactional emails that actually&nbsp;
           <span className="bg-[url('/images/circle-decoration.svg')] bg-top bg-no-repeat">
@@ -18,11 +19,17 @@ const Hero = () => {
         </p>
 
         <div className="flex items-center gap-4">
-          <Button variant="primary" size="large">
-            Our Pricing
+          <Button
+            as={Link}
+            className="rehman"
+            href="/login"
+            variant="primary"
+            size="large"
+          >
+            5k Emails at 5.99$/month
           </Button>
-          <Button variant="secondary" size="large">
-            Send 500 emails/Day for free
+          <Button as="a" href="/signup" variant="secondary" size="large">
+            Send 500 emails/Day free
           </Button>
         </div>
         <div className="flex items-center gap-6">
@@ -40,12 +47,13 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="pt-16">
+      <div className="mt-16">
         <Image
           alt="Hero image"
           src="images/hero.svg"
           width={640}
           height={400}
+          className="h-full w-full"
         />
       </div>
     </section>

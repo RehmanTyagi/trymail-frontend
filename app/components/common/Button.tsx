@@ -1,11 +1,12 @@
-import { cva } from "class-variance-authority";
-import { HTMLAttributes } from "react";
+import { cva, VariantProps } from "class-variance-authority";
+import { ComponentPropsWithoutRef, ElementType } from "react";
 
 const classes = cva("flex gap-2 cursor-pointer text-sm", {
   variants: {
     variant: {
-      primary: "bg-primary",
-      secondary: "border border-foreground rounded-md",
+      primary:
+        "bg-primary hover:bg-foreground transition-colors text-white font-semibold",
+      secondary: "border border-foreground rounded-md font-medium",
     },
     size: {
       small: "px-4 py-2",
@@ -15,16 +16,19 @@ const classes = cva("flex gap-2 cursor-pointer text-sm", {
   },
 });
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary";
-  size?: "small" | "medium" | "large";
-}
+type ButtonProps<C extends ElementType> = VariantProps<typeof classes> & {
+  as?: C;
+  children: React.ReactNode;
+} & ComponentPropsWithoutRef<C>;
 
-const Button = (props: ButtonProps) => {
-  const { variant, size, className, ...restProps } = props;
+const Button = <C extends ElementType>(props: ButtonProps<C>) => {
+  const { as, children, size, variant, className, ...rest } = props;
+  const Component = as || "button";
 
   return (
-    <button className={classes({ variant, size, className })} {...restProps} />
+    <Component className={classes({ size, variant, className })} {...rest}>
+      {children}
+    </Component>
   );
 };
 
