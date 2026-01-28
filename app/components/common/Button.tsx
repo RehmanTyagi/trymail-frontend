@@ -6,12 +6,12 @@ const classes = cva("flex gap-2 items-center", {
     variant: {
       primary:
         "bg-primary hover:bg-foreground transition-colors text-white font-semibold",
-      secondary: "border border-foreground rounded-md font-medium",
+      secondary: "border border-black font-medium",
     },
     size: {
-      small: "px-4 py-1.5",
-      medium: "px-6 py-3",
-      large: "px-8 py-4",
+      small: "px-5 text-xs py-2.5",
+      medium: "px-6 text-sm py-3",
+      large: "px-8 text-base py-4",
     },
   },
 });

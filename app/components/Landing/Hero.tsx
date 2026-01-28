@@ -28,21 +28,53 @@ const Hero = () => {
           >
             5k Emails at 5.99$/month
           </Button>
-          <Button as="a" href="/signup" variant="secondary" size="large">
-            Send 500 emails/Day free
+          <Button
+            as="a"
+            href="/signup"
+            variant="secondary"
+            className="px-5! py-[0.7rem]!"
+            size="large"
+          >
+            <Image
+              src="/images/demo-video-icon.svg"
+              alt="Play video"
+              className="h-8 w-8"
+              width={100}
+              height={100}
+            />
+            <span>Watch Demo Video</span>
           </Button>
         </div>
         <div className="mt-2.5 flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <Clock8 className="h-5 w-auto" />
+            {/* <Clock8 className="h-5 w-auto" /> */}
+            <Image
+              src="/images/verified-badge.svg"
+              alt="verified-badge"
+              height={100}
+              width={100}
+              className="h-5 w-auto"
+            />
             <span>24/5 Supports</span>
           </div>
           <div className="flex items-center gap-2">
-            <Network className="h-5 w-auto" />
+            <Image
+              src="/images/verified-badge.svg"
+              alt="verified-badge"
+              height={100}
+              width={100}
+              className="h-5 w-auto"
+            />
             <span>Less than 100ms Latency</span>
           </div>
           <div className="flex items-center gap-2">
-            <Bug className="h-5 w-auto" />
+            <Image
+              src="/images/verified-badge.svg"
+              alt="verified-badge"
+              height={100}
+              width={100}
+              className="h-5 w-auto"
+            />
             <span>Developer Friendly APIs</span>
           </div>
         </div>

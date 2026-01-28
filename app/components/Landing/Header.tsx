@@ -5,6 +5,8 @@ import { CircleUserRound } from "lucide-react";
 import Button from "../common/Button";
 import Link from "next/link";
 import DesktopMenu from "./DesktopMenu";
+import React from "react";
+import PromotionalHeader from "./promotionalHeader";
 
 interface SubMenuSection {
   title: string;
@@ -102,37 +104,50 @@ const menus: NavigationWithSections[] = [
 ];
 
 const Header = () => {
+  const [headerHeight, setHeaderHeight] = React.useState<number>(0);
+  const headerRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, []);
+
   return (
-    <header className="sticky top-0 flex h-(--header-height) items-center justify-between bg-white px-19 py-6.5">
-      <Link href="/" className="h-auto w-30">
-        <Image
-          src="logo.svg"
-          alt="trymail-logo"
-          width={100}
-          height={100}
-          className="h-auto w-full"
-        />
-      </Link>
-      <nav>
-        <ul className="flex items-center gap-10">
-          {menus.map((item) => (
-            <DesktopMenu
-              key={item.label}
-              href={item.href}
-              label={item.label}
-              sections={item.sections}
-            />
-          ))}
-        </ul>
-      </nav>
-      <div className="flex items-center gap-3 text-xs">
-        <Button as={Link} href="/login" size="small">
-          <CircleUserRound size={20} />
-          <span>Login</span>
-        </Button>
-        <Button as={Link} href="/signup" size="small" variant="primary">
-          Sign up
-        </Button>
+    <header ref={headerRef}>
+      <PromotionalHeader />
+      <div className="sticky top-0 flex items-center justify-between bg-white px-19 py-6.5">
+        <Link href="/" className="h-auto w-30">
+          <Image
+            src="logo.svg"
+            alt="trymail-logo"
+            width={100}
+            height={100}
+            className="h-auto w-full"
+          />
+        </Link>
+        <nav>
+          <ul className="flex items-center gap-10">
+            {menus.map((item) => (
+              <DesktopMenu
+                headerHeight={headerHeight}
+                key={item.label}
+                href={item.href}
+                label={item.label}
+                sections={item.sections}
+              />
+            ))}
+          </ul>
+        </nav>
+        <div className="flex items-center gap-3 text-xs">
+          <Button as={Link} href="/login" size="small">
+            <CircleUserRound size={20} />
+            <span>Login</span>
+          </Button>
+          <Button as={Link} href="/signup" size="small" variant="primary">
+            Sign up
+          </Button>
+        </div>
       </div>
     </header>
   );

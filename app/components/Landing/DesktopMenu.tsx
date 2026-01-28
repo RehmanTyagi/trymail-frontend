@@ -19,11 +19,17 @@ interface DesktopMenuProps {
   label: string;
   href: string;
   sections?: SubMenuSection[];
+  headerHeight: number;
 }
 
-const DesktopMenu = ({ label, href, sections }: DesktopMenuProps) => {
-  const [isOpen, setIsOpen] = useState(true);
-
+const DesktopMenu = ({
+  label,
+  href,
+  sections,
+  headerHeight,
+}: DesktopMenuProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  console.log("header height" + headerHeight);
   const handleOpenClose = () => {
     setIsOpen(!isOpen);
   };
@@ -49,9 +55,9 @@ const DesktopMenu = ({ label, href, sections }: DesktopMenuProps) => {
       {sections && isOpen && (
         <div
           className="fixed right-0 left-0 overflow-hidden border-t border-gray-300 bg-white shadow-xl"
-          style={{ top: "var(--header-height, 80px)" }}
           onMouseEnter={() => setIsOpen(true)}
           onMouseLeave={() => setIsOpen(false)}
+          style={{ top: `${headerHeight}px` }}
         >
           <div className="mx-auto grid max-w-7xl grid-cols-4 gap-8 py-10">
             {sections.map((section, idx) => (
